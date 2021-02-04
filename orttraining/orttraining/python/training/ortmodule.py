@@ -284,7 +284,7 @@ class ORTModule(torch.nn.Module):
         # Exporting module to ONNX for the first time
         if not self._onnx_training:
             if not self._device:
-                self._device = _utils.get_device_index_from_input_args_kwargs(self._original_module, *inputs, **kwargs)
+                self._device = _utils.get_device_from_input_args_kwargs(self._original_module, *inputs, **kwargs)
                 if not self._device:
                     raise RuntimeError('A device must be specified in the model or data!')
             self._build_training_graph(*inputs, **kwargs)
