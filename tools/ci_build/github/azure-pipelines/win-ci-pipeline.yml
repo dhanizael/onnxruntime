@@ -1,6 +1,6 @@
 jobs:
 - job: 'build'
-  pool: 'Win-CPU-2019'
+  pool: 'Win-CPU-Test'
   strategy:
     maxParallel: 2
     matrix:
@@ -158,12 +158,9 @@ jobs:
     parameters :
       condition : 'succeeded'
 
-  - task: mspremier.PostBuildCleanup.PostBuildCleanup-task.PostBuildCleanup@3
-    displayName: 'Clean Agent Directories'
-    condition: always()
 
 - job: 'x86_build'
-  pool: 'Win-CPU-2019'
+  pool: 'Win-CPU-Test'
   variables:
     OrtPackageId: 'Microsoft.ML.OnnxRuntime'
     MsbuildArguments: '-detailedsummary -maxcpucount -consoleloggerparameters:PerformanceSummary'
@@ -292,12 +289,10 @@ jobs:
     parameters :
       condition : 'succeeded'
 
-  - task: mspremier.PostBuildCleanup.PostBuildCleanup-task.PostBuildCleanup@3
-    displayName: 'Clean Agent Directories'
-    condition: always()
+  
    
 - job: 'x86_no_contrib_ops'
-  pool: 'Win-CPU-2019'
+  pool: 'Win-CPU-Test'
   variables:
     OrtPackageId: 'Microsoft.ML.OnnxRuntime'
     MsbuildArguments: '-detailedsummary -maxcpucount -consoleloggerparameters:PerformanceSummary'
@@ -415,12 +410,10 @@ jobs:
     parameters :
       condition : 'succeeded'
 
-  - task: mspremier.PostBuildCleanup.PostBuildCleanup-task.PostBuildCleanup@3
-    displayName: 'Clean Agent Directories'
-    condition: always()
+  
 
 - job: 'build_x64_no_contrib_ops'
-  pool: 'Win-CPU-2019'
+  pool: 'Win-CPU-Test'
   variables:
     OrtPackageId: 'Microsoft.ML.OnnxRuntime'
     MsbuildArguments: '-detailedsummary -maxcpucount -consoleloggerparameters:PerformanceSummary'
@@ -539,8 +532,5 @@ jobs:
   - template: templates/component-governance-component-detection-steps.yml
     parameters :
       condition : 'succeeded'
-
-  - task: mspremier.PostBuildCleanup.PostBuildCleanup-task.PostBuildCleanup@3
-    displayName: 'Clean Agent Directories'
-    condition: always()
+  
    
