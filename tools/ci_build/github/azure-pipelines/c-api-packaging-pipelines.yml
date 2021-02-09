@@ -55,7 +55,7 @@ jobs:
           --skip_submodule_sync  --parallel --build_shared_lib --use_cuda --cuda_version=$(CUDA_VERSION) --cuda_home=/usr/local/cuda-$(CUDA_VERSION) --cudnn_home=/usr/local/cuda-$(CUDA_VERSION) --cmake_extra_defines CMAKE_CUDA_HOST_COMPILER=/opt/rh/devtoolset-8/root/usr/bin/cc
         workingDirectory: $(Build.SourcesDirectory)
 
-    - template: java-api-artifacts-package-and-publish-steps-posix.yml
+    - template: templates/java-api-artifacts-package-and-publish-steps-posix.yml
       parameters:
           arch: 'linux-x64'
           buildConfig: 'Release'
